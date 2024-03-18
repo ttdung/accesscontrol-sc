@@ -13,7 +13,7 @@ async function main() {
   );
   const fileAc = FileAccessControlFactory.attach(CONTRACT_ADDRESS);
   
-  const oldname = "/tmp/demo0/encryptedKey.txt";
+  const oldname = "Qmdhrb3G45VvC4irnGTRiqzgMN1NiidVPfYizBM5QSUMnx";
   const fileId = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(oldname));
  // const fileId = "0x74405ea03568a5286c93fdaf15fd483b3dbd704f04cdac36cf04fe389266ad30"
  console.log('fileId', fileId);

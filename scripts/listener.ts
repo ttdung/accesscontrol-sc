@@ -29,6 +29,7 @@ async function main() {
     let addFileEvent ={
         fileId, owner, name, readRule, writeList, threshold //, eventData
     }
+    console.log("\nEvent AddFile:")
     console.log(JSON.stringify(addFileEvent, null, 4));
     
     var request = require('request');

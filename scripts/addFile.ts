@@ -9,7 +9,7 @@ async function main() {
   const [deployer, dev0, dev1, dev2] = await ethers.getSigners();
   console.log('deployer address', deployer.address);
 
-  const filename ="/tmp/demo0/encryptedKey.txt";
+  const filename ="Qmdhrb3G45VvC4irnGTRiqzgMN1NiidVPfYizBM5QSUMnx";
   const readRule = "student and (math or CS)";
   const writerList = [dev1.address, dev2.address];
   const threshold = 2;
