@@ -1,0 +1,5139 @@
+{
+  "version": "3.4",
+  "log": [
+    {
+      "@openzeppelin/contracts/access/Ownable.sol:Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:20",
+        "inherit": [
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:28"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "@openzeppelin/contracts/utils/Context.sol:Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:16",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "contracts/FileAccessControl.sol:FileAccessControl": {
+        "src": "contracts/FileAccessControl.sol:6",
+        "version": {
+          "withMetadata": "5fa116b1ea836619f87f0179b63f94bb62b963ae28df48db620e98af95e9378c",
+          "withoutMetadata": "eee89065b80f654a772656796ec550a49c8dad8859cbbac702921c3c1f2d3191",
+          "linkedWithoutMetadata": "eee89065b80f654a772656796ec550a49c8dad8859cbbac702921c3c1f2d3191"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "setDataOwner(address,bool)",
+          "addFile(bytes32,string,string,address[],uint256)",
+          "isInList(address,address[])",
+          "compare(string,string)",
+          "submitUpdateFileProposal(bytes32,bytes32,string,string)",
+          "approveProposal(bytes32)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "dataOwner",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_bool)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:22"
+            },
+            {
+              "label": "files",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_bytes32,t_struct(File)151_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:23"
+            },
+            {
+              "label": "writeProposal",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_mapping(t_bytes32,t_struct(Proposal)161_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:24"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(File)151_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl.File)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(Proposal)161_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl.Proposal)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            },
+            "t_struct(File)151_storage": {
+              "label": "struct FileAccessControl.File",
+              "members": [
+                {
+                  "label": "owner",
+                  "type": "t_address",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "name",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "readRule",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "writers",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "3"
+                },
+                {
+                  "label": "threshold",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "4"
+                }
+              ],
+              "numberOfBytes": "160"
+            },
+            "t_struct(Proposal)161_storage": {
+              "label": "struct FileAccessControl.Proposal",
+              "members": [
+                {
+                  "label": "fileId",
+                  "type": "t_bytes32",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "oldname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "newname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "proposer",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "3"
+                }
+              ],
+              "numberOfBytes": "128"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      }
+    },
+    {
+      "@openzeppelin/contracts/access/Ownable.sol:Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:20",
+        "inherit": [
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:28"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "@openzeppelin/contracts/utils/Context.sol:Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:16",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "contracts/FileAccessControl.sol:FileAccessControl": {
+        "src": "contracts/FileAccessControl.sol:6",
+        "version": {
+          "withMetadata": "b04a0312ef72246a183de11ab827361e9a8cf9f7ce84b22137220abae8f62c9e",
+          "withoutMetadata": "57719b9078133314bdb01ca1296866a66d2a6391db82711b0196a8e8b5ce8dbc",
+          "linkedWithoutMetadata": "57719b9078133314bdb01ca1296866a66d2a6391db82711b0196a8e8b5ce8dbc"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "setDataOwner(address,bool)",
+          "addFile(bytes32,string,string,address[],uint256)",
+          "isInList(address,address[])",
+          "compare(string,string)",
+          "submitUpdateFileProposal(bytes32,bytes32,string,string)",
+          "approveProposal(bytes32)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "dataOwner",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_bool)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:22"
+            },
+            {
+              "label": "files",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_bytes32,t_struct(File)151_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:23"
+            },
+            {
+              "label": "writeProposal",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_mapping(t_bytes32,t_struct(Proposal)161_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:24"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(File)151_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl.File)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(Proposal)161_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl.Proposal)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            },
+            "t_struct(File)151_storage": {
+              "label": "struct FileAccessControl.File",
+              "members": [
+                {
+                  "label": "owner",
+                  "type": "t_address",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "name",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "readRule",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "writers",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "3"
+                },
+                {
+                  "label": "threshold",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "4"
+                }
+              ],
+              "numberOfBytes": "160"
+            },
+            "t_struct(Proposal)161_storage": {
+              "label": "struct FileAccessControl.Proposal",
+              "members": [
+                {
+                  "label": "fileId",
+                  "type": "t_bytes32",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "oldname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "newname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "proposer",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "3"
+                }
+              ],
+              "numberOfBytes": "128"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      }
+    },
+    {
+      "@openzeppelin/contracts/access/Ownable.sol:Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:20",
+        "inherit": [
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:28"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "@openzeppelin/contracts/utils/Context.sol:Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:16",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "contracts/FileAccessControl.sol:FileAccessControl": {
+        "src": "contracts/FileAccessControl.sol:6",
+        "version": {
+          "withMetadata": "5df38edb377a240b68be216df6ff65df5d2cd5951a7812dab5d163e9b91bb975",
+          "withoutMetadata": "1296dd5ba4726fa2658ee243075931922fc8e6258e4b4ee8ba3b83f71be1034e",
+          "linkedWithoutMetadata": "1296dd5ba4726fa2658ee243075931922fc8e6258e4b4ee8ba3b83f71be1034e"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "setDataOwner(address,bool)",
+          "addFile(bytes32,string,string,address[],uint256)",
+          "isInList(address,address[])",
+          "compare(string,string)",
+          "submitUpdateFileProposal(bytes32,bytes32,string,string)",
+          "approveProposal(bytes32)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "dataOwner",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_bool)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:22"
+            },
+            {
+              "label": "files",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_bytes32,t_struct(File)151_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:23"
+            },
+            {
+              "label": "writeProposal",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_mapping(t_bytes32,t_struct(Proposal)161_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:24"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(File)151_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl.File)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(Proposal)161_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl.Proposal)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            },
+            "t_struct(File)151_storage": {
+              "label": "struct FileAccessControl.File",
+              "members": [
+                {
+                  "label": "owner",
+                  "type": "t_address",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "name",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "readRule",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "writers",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "3"
+                },
+                {
+                  "label": "threshold",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "4"
+                }
+              ],
+              "numberOfBytes": "160"
+            },
+            "t_struct(Proposal)161_storage": {
+              "label": "struct FileAccessControl.Proposal",
+              "members": [
+                {
+                  "label": "fileId",
+                  "type": "t_bytes32",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "oldname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "newname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "proposer",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "3"
+                }
+              ],
+              "numberOfBytes": "128"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      }
+    },
+    {
+      "@openzeppelin/contracts/access/Ownable.sol:Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:20",
+        "inherit": [
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:28"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "@openzeppelin/contracts/utils/Context.sol:Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:16",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "contracts/FileAccessControl.sol:FileAccessControl": {
+        "src": "contracts/FileAccessControl.sol:6",
+        "version": {
+          "withMetadata": "3a6b09d0079ae15cf523e2d1cdb53e37e03320ed1bc132a5e69abc67892f01b3",
+          "withoutMetadata": "dc8ae96fdc924c25e93262562011a8b0631c6d0886c7f2753aee234aa390d2df",
+          "linkedWithoutMetadata": "dc8ae96fdc924c25e93262562011a8b0631c6d0886c7f2753aee234aa390d2df"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "setDataOwner(address,bool)",
+          "addFile(bytes32,string,string,address[],uint256)",
+          "isInList(address,address[])",
+          "compare(string,string)",
+          "submitUpdateFileProposal(bytes32,bytes32,string,string)",
+          "approveProposal(bytes32)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "dataOwner",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_bool)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:22"
+            },
+            {
+              "label": "files",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_bytes32,t_struct(File)151_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:23"
+            },
+            {
+              "label": "writeProposal",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_mapping(t_bytes32,t_struct(Proposal)161_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:24"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(File)151_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl.File)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(Proposal)161_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl.Proposal)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            },
+            "t_struct(File)151_storage": {
+              "label": "struct FileAccessControl.File",
+              "members": [
+                {
+                  "label": "owner",
+                  "type": "t_address",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "name",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "readRule",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "writers",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "3"
+                },
+                {
+                  "label": "threshold",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "4"
+                }
+              ],
+              "numberOfBytes": "160"
+            },
+            "t_struct(Proposal)161_storage": {
+              "label": "struct FileAccessControl.Proposal",
+              "members": [
+                {
+                  "label": "fileId",
+                  "type": "t_bytes32",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "oldname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "newname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "proposer",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "3"
+                }
+              ],
+              "numberOfBytes": "128"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      }
+    },
+    {
+      "@openzeppelin/contracts/access/Ownable.sol:Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:20",
+        "inherit": [
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:28"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "@openzeppelin/contracts/utils/Context.sol:Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:16",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "contracts/FileAccessControl.sol:FileAccessControl": {
+        "src": "contracts/FileAccessControl.sol:6",
+        "version": {
+          "withMetadata": "4bde90c13b6cee7e957500d4703f1735ec4d39a90538057a2b7409a56f465857",
+          "withoutMetadata": "0e65a099a07f03e146c1c2b4624666984de4e64d29e9a05d0a4a9a8b0159448d",
+          "linkedWithoutMetadata": "0e65a099a07f03e146c1c2b4624666984de4e64d29e9a05d0a4a9a8b0159448d"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "setDataOwner(address,bool)",
+          "addFile(bytes32,string,string,address[],uint256)",
+          "isInList(address,address[])",
+          "compare(string,string)",
+          "submitUpdateFileProposal(bytes32,bytes32,string,string)",
+          "approveProposal(bytes32)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "dataOwner",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_bool)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:22"
+            },
+            {
+              "label": "files",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_bytes32,t_struct(File)151_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:23"
+            },
+            {
+              "label": "writeProposal",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_mapping(t_bytes32,t_struct(Proposal)161_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:24"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(File)151_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl.File)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(Proposal)161_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl.Proposal)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            },
+            "t_struct(File)151_storage": {
+              "label": "struct FileAccessControl.File",
+              "members": [
+                {
+                  "label": "owner",
+                  "type": "t_address",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "name",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "readRule",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "writers",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "3"
+                },
+                {
+                  "label": "threshold",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "4"
+                }
+              ],
+              "numberOfBytes": "160"
+            },
+            "t_struct(Proposal)161_storage": {
+              "label": "struct FileAccessControl.Proposal",
+              "members": [
+                {
+                  "label": "fileId",
+                  "type": "t_bytes32",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "oldname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "newname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "proposer",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "3"
+                }
+              ],
+              "numberOfBytes": "128"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      }
+    },
+    {
+      "@openzeppelin/contracts/access/Ownable.sol:Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:20",
+        "inherit": [
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:28"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "@openzeppelin/contracts/utils/Context.sol:Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:16",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "contracts/FileAccessControl.sol:FileAccessControl": {
+        "src": "contracts/FileAccessControl.sol:6",
+        "version": {
+          "withMetadata": "26e7a5f4732fec63db1b68ddfabc4e3aa1804c83e2d865948d97b5d378a9b1aa",
+          "withoutMetadata": "4d62c4adce8580cb7a5da6782c5895554c19172a754947e7f714e41c1590711d",
+          "linkedWithoutMetadata": "4d62c4adce8580cb7a5da6782c5895554c19172a754947e7f714e41c1590711d"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "setDataOwner(address,bool)",
+          "addFile(bytes32,string,string,address[],uint256)",
+          "isInList(address,address[])",
+          "compare(string,string)",
+          "submitUpdateFileProposal(bytes32,bytes32,string,string)",
+          "approveProposal(bytes32)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "dataOwner",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_bool)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:22"
+            },
+            {
+              "label": "files",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_bytes32,t_struct(File)151_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:23"
+            },
+            {
+              "label": "writeProposal",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_mapping(t_bytes32,t_struct(Proposal)161_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:24"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(File)151_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl.File)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(Proposal)161_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl.Proposal)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            },
+            "t_struct(File)151_storage": {
+              "label": "struct FileAccessControl.File",
+              "members": [
+                {
+                  "label": "owner",
+                  "type": "t_address",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "name",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "readRule",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "writers",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "3"
+                },
+                {
+                  "label": "threshold",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "4"
+                }
+              ],
+              "numberOfBytes": "160"
+            },
+            "t_struct(Proposal)161_storage": {
+              "label": "struct FileAccessControl.Proposal",
+              "members": [
+                {
+                  "label": "fileId",
+                  "type": "t_bytes32",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "oldname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "newname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "proposer",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "3"
+                }
+              ],
+              "numberOfBytes": "128"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      }
+    },
+    {
+      "@openzeppelin/contracts/access/Ownable.sol:Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:20",
+        "inherit": [
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:28"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "@openzeppelin/contracts/utils/Context.sol:Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:16",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "contracts/FileAccessControl.sol:FileAccessControl": {
+        "src": "contracts/FileAccessControl.sol:6",
+        "version": {
+          "withMetadata": "fa2622084d81509e7ddea44f835c5b68936d6e7c2fbb7a99ea89413e91901136",
+          "withoutMetadata": "e5d68c02cbcec917f080deac3cee84b3f84acd9b49d87ac8ac3be67d62479f9f",
+          "linkedWithoutMetadata": "e5d68c02cbcec917f080deac3cee84b3f84acd9b49d87ac8ac3be67d62479f9f"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "setDataOwner(address,bool)",
+          "addFile(bytes32,string,string,address[],uint256)",
+          "isInList(address,address[])",
+          "compare(string,string)",
+          "submitUpdateFileProposal(bytes32,bytes32,string,string)",
+          "approveProposal(bytes32)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "dataOwner",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_bool)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:22"
+            },
+            {
+              "label": "files",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_bytes32,t_struct(File)151_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:23"
+            },
+            {
+              "label": "writeProposal",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_mapping(t_bytes32,t_struct(Proposal)161_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:24"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(File)151_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl.File)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(Proposal)161_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl.Proposal)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            },
+            "t_struct(File)151_storage": {
+              "label": "struct FileAccessControl.File",
+              "members": [
+                {
+                  "label": "owner",
+                  "type": "t_address",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "name",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "readRule",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "writers",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "3"
+                },
+                {
+                  "label": "threshold",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "4"
+                }
+              ],
+              "numberOfBytes": "160"
+            },
+            "t_struct(Proposal)161_storage": {
+              "label": "struct FileAccessControl.Proposal",
+              "members": [
+                {
+                  "label": "fileId",
+                  "type": "t_bytes32",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "oldname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "newname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "proposer",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "3"
+                }
+              ],
+              "numberOfBytes": "128"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      }
+    },
+    {
+      "@openzeppelin/contracts/access/Ownable.sol:Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:20",
+        "inherit": [
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:28"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "@openzeppelin/contracts/utils/Context.sol:Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:16",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "contracts/FileAccessControl.sol:FileAccessControl": {
+        "src": "contracts/FileAccessControl.sol:6",
+        "version": {
+          "withMetadata": "5e2cea25e85617cf2da65fc686616db10bb023bd8f229d77dc24b8fe59d7c629",
+          "withoutMetadata": "2b098fd081099aec047ffacad8fc103de7bb1739ae17cdbb720c908fdb0155b9",
+          "linkedWithoutMetadata": "2b098fd081099aec047ffacad8fc103de7bb1739ae17cdbb720c908fdb0155b9"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "setDataOwner(address,bool)",
+          "addFile(bytes32,string,string,address[],uint256)",
+          "isInList(address,address[])",
+          "compare(string,string)",
+          "submitUpdateFileProposal(bytes32,string,string)",
+          "approveProposal(bytes32)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "dataOwner",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_bool)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:22"
+            },
+            {
+              "label": "files",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_bytes32,t_struct(File)151_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:23"
+            },
+            {
+              "label": "writeProposal",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_mapping(t_bytes32,t_struct(Proposal)161_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:24"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(File)151_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl.File)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(Proposal)161_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl.Proposal)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            },
+            "t_struct(File)151_storage": {
+              "label": "struct FileAccessControl.File",
+              "members": [
+                {
+                  "label": "owner",
+                  "type": "t_address",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "name",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "readRule",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "writers",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "3"
+                },
+                {
+                  "label": "threshold",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "4"
+                }
+              ],
+              "numberOfBytes": "160"
+            },
+            "t_struct(Proposal)161_storage": {
+              "label": "struct FileAccessControl.Proposal",
+              "members": [
+                {
+                  "label": "fileId",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "oldname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "newname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "proposer",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "3"
+                }
+              ],
+              "numberOfBytes": "128"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "contracts/FileAccessControl0.sol:FileAccessControl0": {
+        "src": "contracts/FileAccessControl0.sol:6",
+        "version": {
+          "withMetadata": "8fed9f3c361d246c1f3a67b4881fe8daccb505cee7125568330f37054e81aa83",
+          "withoutMetadata": "247f8628716590ba910b7e39e87f2b3ab68b94db7088d38183314a0ca5e230fe",
+          "linkedWithoutMetadata": "247f8628716590ba910b7e39e87f2b3ab68b94db7088d38183314a0ca5e230fe"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "setDataOwner(address,bool)",
+          "addFile(bytes32,string,address[])",
+          "updateFile(bytes32,bytes32)",
+          "updateReadRule(bytes32,bytes32,string)",
+          "updateWriteList(bytes32,bytes32,address[])",
+          "isWriter(bytes32,address)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "dataOwner",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_bool)",
+              "contract": "FileAccessControl0",
+              "src": "contracts/FileAccessControl0.sol:7"
+            },
+            {
+              "label": "fileOwners",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_bytes32,t_address)",
+              "contract": "FileAccessControl0",
+              "src": "contracts/FileAccessControl0.sol:8"
+            },
+            {
+              "label": "readFileRule",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_mapping(t_bytes32,t_string_storage)",
+              "contract": "FileAccessControl0",
+              "src": "contracts/FileAccessControl0.sol:9"
+            },
+            {
+              "label": "fileWriters",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_mapping(t_bytes32,t_array(t_address)dyn_storage)",
+              "contract": "FileAccessControl0",
+              "src": "contracts/FileAccessControl0.sol:10"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_address)": {
+              "label": "mapping(bytes32 => address)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_array(t_address)dyn_storage)": {
+              "label": "mapping(bytes32 => address[])",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_string_storage)": {
+              "label": "mapping(bytes32 => string)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      }
+    },
+    {
+      "@openzeppelin/contracts/access/Ownable.sol:Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:20",
+        "inherit": [
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:28"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "@openzeppelin/contracts/utils/Context.sol:Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:16",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "contracts/FileAccessControl.sol:FileAccessControl": {
+        "src": "contracts/FileAccessControl.sol:6",
+        "version": {
+          "withMetadata": "e5d39fb02b8147de6869bbf384eb7ddb306ca74ed717c1bef06c3f5c9b8df92e",
+          "withoutMetadata": "ed3c5e9d190ba6f80c03aeb79d817d1a8007916c590787d05e95e230f8201c1c",
+          "linkedWithoutMetadata": "ed3c5e9d190ba6f80c03aeb79d817d1a8007916c590787d05e95e230f8201c1c"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "setDataOwner(address,bool)",
+          "addFile(bytes32,string,string,address[],uint256)",
+          "isInList(address,address[])",
+          "submitUpdateFileProposal(bytes32,string,string)",
+          "approveProposal(bytes32)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "dataOwner",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_bool)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:21"
+            },
+            {
+              "label": "files",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_bytes32,t_struct(File)151_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:22"
+            },
+            {
+              "label": "writeProposal",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_mapping(t_bytes32,t_struct(Proposal)159_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:23"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(File)151_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl.File)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(Proposal)159_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl.Proposal)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            },
+            "t_struct(File)151_storage": {
+              "label": "struct FileAccessControl.File",
+              "members": [
+                {
+                  "label": "owner",
+                  "type": "t_address",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "name",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "readRule",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "writers",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "3"
+                },
+                {
+                  "label": "threshold",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "4"
+                }
+              ],
+              "numberOfBytes": "160"
+            },
+            "t_struct(Proposal)159_storage": {
+              "label": "struct FileAccessControl.Proposal",
+              "members": [
+                {
+                  "label": "oldname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "newname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "proposer",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "2"
+                }
+              ],
+              "numberOfBytes": "96"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      }
+    },
+    {
+      "@openzeppelin/contracts/access/Ownable.sol:Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:20",
+        "inherit": [
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:28"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "@openzeppelin/contracts/utils/Context.sol:Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:16",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "contracts/FileAccessControl.sol:FileAccessControl": {
+        "src": "contracts/FileAccessControl.sol:6",
+        "version": {
+          "withMetadata": "5f444b3acd56295995147d9c5aa07280022f4987fb593dae1a7189bea0648acc",
+          "withoutMetadata": "0e94e5d481e15ed773070790f1fedee74f17800cc8ee2b0d25831c08219f6fb8",
+          "linkedWithoutMetadata": "0e94e5d481e15ed773070790f1fedee74f17800cc8ee2b0d25831c08219f6fb8"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "setDataOwner(address,bool)",
+          "addFile(bytes32,string,string,address[],uint256)",
+          "isInList(address,address[])",
+          "submitUpdateFileProposal(bytes32,string,string)",
+          "approveProposal(bytes32)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "dataOwner",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_bool)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:21"
+            },
+            {
+              "label": "files",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_bytes32,t_struct(File)151_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:22"
+            },
+            {
+              "label": "writeProposal",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_mapping(t_bytes32,t_struct(Proposal)159_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:23"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(File)151_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl.File)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(Proposal)159_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl.Proposal)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            },
+            "t_struct(File)151_storage": {
+              "label": "struct FileAccessControl.File",
+              "members": [
+                {
+                  "label": "owner",
+                  "type": "t_address",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "name",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "readRule",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "writers",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "3"
+                },
+                {
+                  "label": "threshold",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "4"
+                }
+              ],
+              "numberOfBytes": "160"
+            },
+            "t_struct(Proposal)159_storage": {
+              "label": "struct FileAccessControl.Proposal",
+              "members": [
+                {
+                  "label": "oldname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "newname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "proposer",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "2"
+                }
+              ],
+              "numberOfBytes": "96"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      }
+    },
+    {
+      "@openzeppelin/contracts/access/Ownable.sol:Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:20",
+        "inherit": [
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:28"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "@openzeppelin/contracts/utils/Context.sol:Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:16",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "contracts/FileAccessControl.sol:FileAccessControl": {
+        "src": "contracts/FileAccessControl.sol:6",
+        "version": {
+          "withMetadata": "aaa9bed4c3b6702e4d55cd9187a0106bf838de712222e772e74c44dc18be8b60",
+          "withoutMetadata": "042108ee5f8fefbad601d4d12441de386d28829e23a3ff731a8a6ac19d02117f",
+          "linkedWithoutMetadata": "042108ee5f8fefbad601d4d12441de386d28829e23a3ff731a8a6ac19d02117f"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "setDataOwner(address,bool)",
+          "addFile(bytes32,string,string,address[],uint256)",
+          "isInList(address,address[])",
+          "submitUpdateFileProposal(bytes32,string,string)",
+          "approveProposal(bytes32)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "dataOwner",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_bool)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:21"
+            },
+            {
+              "label": "files",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_bytes32,t_struct(File)151_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:22"
+            },
+            {
+              "label": "writeProposal",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_mapping(t_bytes32,t_struct(Proposal)159_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:23"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(File)151_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl.File)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(Proposal)159_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl.Proposal)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            },
+            "t_struct(File)151_storage": {
+              "label": "struct FileAccessControl.File",
+              "members": [
+                {
+                  "label": "owner",
+                  "type": "t_address",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "name",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "readRule",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "writers",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "3"
+                },
+                {
+                  "label": "threshold",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "4"
+                }
+              ],
+              "numberOfBytes": "160"
+            },
+            "t_struct(Proposal)159_storage": {
+              "label": "struct FileAccessControl.Proposal",
+              "members": [
+                {
+                  "label": "oldname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "newname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "proposer",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "2"
+                }
+              ],
+              "numberOfBytes": "96"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      }
+    },
+    {
+      "@openzeppelin/contracts/access/Ownable.sol:Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:20",
+        "inherit": [
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:28"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "@openzeppelin/contracts/utils/Context.sol:Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:16",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "contracts/FileAccessControl.sol:FileAccessControl0": {
+        "src": "contracts/FileAccessControl.sol:6",
+        "version": {
+          "withMetadata": "bd862148998e3fa04b26bf5bba64674f1375556acbf9aff4e9cadec75ddf2325",
+          "withoutMetadata": "042108ee5f8fefbad601d4d12441de386d28829e23a3ff731a8a6ac19d02117f",
+          "linkedWithoutMetadata": "042108ee5f8fefbad601d4d12441de386d28829e23a3ff731a8a6ac19d02117f"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "setDataOwner(address,bool)",
+          "addFile(bytes32,string,string,address[],uint256)",
+          "isInList(address,address[])",
+          "submitUpdateFileProposal(bytes32,string,string)",
+          "approveProposal(bytes32)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "dataOwner",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_bool)",
+              "contract": "FileAccessControl0",
+              "src": "contracts/FileAccessControl.sol:21"
+            },
+            {
+              "label": "files",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_bytes32,t_struct(File)151_storage)",
+              "contract": "FileAccessControl0",
+              "src": "contracts/FileAccessControl.sol:22"
+            },
+            {
+              "label": "writeProposal",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_mapping(t_bytes32,t_struct(Proposal)159_storage)",
+              "contract": "FileAccessControl0",
+              "src": "contracts/FileAccessControl.sol:23"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(File)151_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl0.File)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(Proposal)159_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl0.Proposal)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            },
+            "t_struct(File)151_storage": {
+              "label": "struct FileAccessControl0.File",
+              "members": [
+                {
+                  "label": "owner",
+                  "type": "t_address",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "name",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "readRule",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "writers",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "3"
+                },
+                {
+                  "label": "threshold",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "4"
+                }
+              ],
+              "numberOfBytes": "160"
+            },
+            "t_struct(Proposal)159_storage": {
+              "label": "struct FileAccessControl0.Proposal",
+              "members": [
+                {
+                  "label": "oldname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "newname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "proposer",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "2"
+                }
+              ],
+              "numberOfBytes": "96"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      }
+    },
+    {
+      "@openzeppelin/contracts/access/Ownable.sol:Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:20",
+        "inherit": [
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:28"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "@openzeppelin/contracts/utils/Context.sol:Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:16",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "contracts/FileAccessControl.sol:FileAccessControl0": {
+        "src": "contracts/FileAccessControl.sol:6",
+        "version": {
+          "withMetadata": "6c05f8d064dac6f988625d9e7885ad5a4d17a36bad640e6aa1af0bbd23f95110",
+          "withoutMetadata": "042108ee5f8fefbad601d4d12441de386d28829e23a3ff731a8a6ac19d02117f",
+          "linkedWithoutMetadata": "042108ee5f8fefbad601d4d12441de386d28829e23a3ff731a8a6ac19d02117f"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "setDataOwner(address,bool)",
+          "addFile(bytes32,string,string,address[],uint256)",
+          "isInList(address,address[])",
+          "submitUpdateFileProposal(bytes32,string,string)",
+          "approveProposal(bytes32)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "dataOwner",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_bool)",
+              "contract": "FileAccessControl0",
+              "src": "contracts/FileAccessControl.sol:21"
+            },
+            {
+              "label": "files",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_bytes32,t_struct(File)151_storage)",
+              "contract": "FileAccessControl0",
+              "src": "contracts/FileAccessControl.sol:22"
+            },
+            {
+              "label": "writeProposal",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_mapping(t_bytes32,t_struct(Proposal)159_storage)",
+              "contract": "FileAccessControl0",
+              "src": "contracts/FileAccessControl.sol:23"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(File)151_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl0.File)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(Proposal)159_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl0.Proposal)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            },
+            "t_struct(File)151_storage": {
+              "label": "struct FileAccessControl0.File",
+              "members": [
+                {
+                  "label": "owner",
+                  "type": "t_address",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "name",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "readRule",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "writers",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "3"
+                },
+                {
+                  "label": "threshold",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "4"
+                }
+              ],
+              "numberOfBytes": "160"
+            },
+            "t_struct(Proposal)159_storage": {
+              "label": "struct FileAccessControl0.Proposal",
+              "members": [
+                {
+                  "label": "oldname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "newname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "proposer",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "2"
+                }
+              ],
+              "numberOfBytes": "96"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      }
+    },
+    {
+      "@openzeppelin/contracts/access/Ownable.sol:Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:20",
+        "inherit": [
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:28"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "@openzeppelin/contracts/utils/Context.sol:Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:16",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "contracts/FileAccessControl.sol:FileAccessControl0": {
+        "src": "contracts/FileAccessControl.sol:6",
+        "version": {
+          "withMetadata": "97d2fa3e8122984752505051e245febe45f908dd57d28ef1ec2f511611d7f189",
+          "withoutMetadata": "042108ee5f8fefbad601d4d12441de386d28829e23a3ff731a8a6ac19d02117f",
+          "linkedWithoutMetadata": "042108ee5f8fefbad601d4d12441de386d28829e23a3ff731a8a6ac19d02117f"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "setDataOwner(address,bool)",
+          "addFile(bytes32,string,string,address[],uint256)",
+          "isInList(address,address[])",
+          "submitUpdateFileProposal(bytes32,string,string)",
+          "approveProposal(bytes32)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "dataOwner",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_bool)",
+              "contract": "FileAccessControl0",
+              "src": "contracts/FileAccessControl.sol:21"
+            },
+            {
+              "label": "files",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_bytes32,t_struct(File)151_storage)",
+              "contract": "FileAccessControl0",
+              "src": "contracts/FileAccessControl.sol:22"
+            },
+            {
+              "label": "writeProposal",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_mapping(t_bytes32,t_struct(Proposal)159_storage)",
+              "contract": "FileAccessControl0",
+              "src": "contracts/FileAccessControl.sol:23"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(File)151_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl0.File)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(Proposal)159_storage)": {
+              "label": "mapping(bytes32 => struct FileAccessControl0.Proposal)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            },
+            "t_struct(File)151_storage": {
+              "label": "struct FileAccessControl0.File",
+              "members": [
+                {
+                  "label": "owner",
+                  "type": "t_address",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "name",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "readRule",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "writers",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "3"
+                },
+                {
+                  "label": "threshold",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "4"
+                }
+              ],
+              "numberOfBytes": "160"
+            },
+            "t_struct(Proposal)159_storage": {
+              "label": "struct FileAccessControl0.Proposal",
+              "members": [
+                {
+                  "label": "oldname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "newname",
+                  "type": "t_string_storage",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "proposer",
+                  "type": "t_array(t_address)dyn_storage",
+                  "offset": 0,
+                  "slot": "2"
+                }
+              ],
+              "numberOfBytes": "96"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "contracts/FileAccessControl0.sol:FileAccessControl0": {
+        "src": "contracts/FileAccessControl0.sol:6",
+        "version": {
+          "withMetadata": "f18dd408c6226d2e23725711d6a58d780983a717b4d759b9f38d846951e5c5d3",
+          "withoutMetadata": "247f8628716590ba910b7e39e87f2b3ab68b94db7088d38183314a0ca5e230fe",
+          "linkedWithoutMetadata": "247f8628716590ba910b7e39e87f2b3ab68b94db7088d38183314a0ca5e230fe"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "setDataOwner(address,bool)",
+          "addFile(bytes32,string,address[])",
+          "updateFile(bytes32,bytes32)",
+          "updateReadRule(bytes32,bytes32,string)",
+          "updateWriteList(bytes32,bytes32,address[])",
+          "isWriter(bytes32,address)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "dataOwner",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_bool)",
+              "contract": "FileAccessControl0",
+              "src": "contracts/FileAccessControl0.sol:7"
+            },
+            {
+              "label": "fileOwners",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_bytes32,t_address)",
+              "contract": "FileAccessControl0",
+              "src": "contracts/FileAccessControl0.sol:8"
+            },
+            {
+              "label": "readFileRule",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_mapping(t_bytes32,t_string_storage)",
+              "contract": "FileAccessControl0",
+              "src": "contracts/FileAccessControl0.sol:9"
+            },
+            {
+              "label": "fileWriters",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_mapping(t_bytes32,t_array(t_address)dyn_storage)",
+              "contract": "FileAccessControl0",
+              "src": "contracts/FileAccessControl0.sol:10"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_address)": {
+              "label": "mapping(bytes32 => address)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_array(t_address)dyn_storage)": {
+              "label": "mapping(bytes32 => address[])",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_string_storage)": {
+              "label": "mapping(bytes32 => string)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      }
+    },
+    {
+      "@openzeppelin/contracts/access/Ownable.sol:Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:20",
+        "inherit": [
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:28"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "@openzeppelin/contracts/token/ERC20/IERC20.sol:IERC20": {
+        "src": "@openzeppelin/contracts/token/ERC20/IERC20.sol:9",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "totalSupply()",
+          "balanceOf(address)",
+          "transfer(address,uint256)",
+          "allowance(address,address)",
+          "approve(address,uint256)",
+          "transferFrom(address,address,uint256)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol:IERC20Metadata": {
+        "src": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol:13",
+        "inherit": [
+          "@openzeppelin/contracts/token/ERC20/IERC20.sol:IERC20"
+        ],
+        "libraries": [],
+        "methods": [
+          "name()",
+          "symbol()",
+          "decimals()"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "@openzeppelin/contracts/utils/Context.sol:Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:16",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "contracts/FileAccessControl.sol:FileAccessControl": {
+        "src": "contracts/FileAccessControl.sol:6",
+        "version": {
+          "withMetadata": "c801b41ead62730815c0021edd79ecc089a4159851dd45eb25a5a4337eca649c",
+          "withoutMetadata": "247f8628716590ba910b7e39e87f2b3ab68b94db7088d38183314a0ca5e230fe",
+          "linkedWithoutMetadata": "247f8628716590ba910b7e39e87f2b3ab68b94db7088d38183314a0ca5e230fe"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "setDataOwner(address,bool)",
+          "addFile(bytes32,string,address[])",
+          "updateFile(bytes32,bytes32)",
+          "updateReadRule(bytes32,bytes32,string)",
+          "updateWriteList(bytes32,bytes32,address[])",
+          "isWriter(bytes32,address)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "dataOwner",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_bool)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:7"
+            },
+            {
+              "label": "fileOwners",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_bytes32,t_address)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:8"
+            },
+            {
+              "label": "readFileRule",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_mapping(t_bytes32,t_string_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:9"
+            },
+            {
+              "label": "fileWriters",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_mapping(t_bytes32,t_array(t_address)dyn_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:10"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_address)": {
+              "label": "mapping(bytes32 => address)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_array(t_address)dyn_storage)": {
+              "label": "mapping(bytes32 => address[])",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_string_storage)": {
+              "label": "mapping(bytes32 => string)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "contracts/test/ERC20Test.sol:ERC20Test": {
+        "src": "contracts/test/ERC20Test.sol:33",
+        "version": {
+          "withMetadata": "48eafb2f1643fffa2b22c34e678e675a996b56eb8ad89c65265de7acb5cf648f",
+          "withoutMetadata": "d18a3fc84396a24d8cba785e64b8dc23adf3975cd6b6b966df546e5dc08af6ac",
+          "linkedWithoutMetadata": "d18a3fc84396a24d8cba785e64b8dc23adf3975cd6b6b966df546e5dc08af6ac"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol:IERC20Metadata",
+          "@openzeppelin/contracts/token/ERC20/IERC20.sol:IERC20",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "(string,string,uint256)",
+          "name()",
+          "symbol()",
+          "decimals()",
+          "totalSupply()",
+          "balanceOf(address)",
+          "transfer(address,uint256)",
+          "allowance(address,address)",
+          "approve(address,uint256)",
+          "transferFrom(address,address,uint256)",
+          "increaseAllowance(address,uint256)",
+          "decreaseAllowance(address,uint256)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "ERC20Test",
+            "src": "contracts/test/ERC20Test.sol:52"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_balances",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_mapping(t_address,t_uint256)",
+              "contract": "ERC20Test",
+              "src": "contracts/test/ERC20Test.sol:34"
+            },
+            {
+              "label": "_allowances",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_mapping(t_address,t_uint256))",
+              "contract": "ERC20Test",
+              "src": "contracts/test/ERC20Test.sol:36"
+            },
+            {
+              "label": "_totalSupply",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_uint256",
+              "contract": "ERC20Test",
+              "src": "contracts/test/ERC20Test.sol:38"
+            },
+            {
+              "label": "_name",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_string_storage",
+              "contract": "ERC20Test",
+              "src": "contracts/test/ERC20Test.sol:40"
+            },
+            {
+              "label": "_symbol",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_string_storage",
+              "contract": "ERC20Test",
+              "src": "contracts/test/ERC20Test.sol:41"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_mapping(t_address,t_mapping(t_address,t_uint256))": {
+              "label": "mapping(address => mapping(address => uint256))",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_uint256)": {
+              "label": "mapping(address => uint256)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      }
+    },
+    {
+      "@openzeppelin/contracts/access/Ownable.sol:Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:20",
+        "inherit": [
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:28"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "@openzeppelin/contracts/utils/Context.sol:Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:16",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "contracts/FileAccessControl.sol:FileAccessControl": {
+        "src": "contracts/FileAccessControl.sol:6",
+        "version": {
+          "withMetadata": "c801b41ead62730815c0021edd79ecc089a4159851dd45eb25a5a4337eca649c",
+          "withoutMetadata": "247f8628716590ba910b7e39e87f2b3ab68b94db7088d38183314a0ca5e230fe",
+          "linkedWithoutMetadata": "247f8628716590ba910b7e39e87f2b3ab68b94db7088d38183314a0ca5e230fe"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "setDataOwner(address,bool)",
+          "addFile(bytes32,string,address[])",
+          "updateFile(bytes32,bytes32)",
+          "updateReadRule(bytes32,bytes32,string)",
+          "updateWriteList(bytes32,bytes32,address[])",
+          "isWriter(bytes32,address)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "dataOwner",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_bool)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:7"
+            },
+            {
+              "label": "fileOwners",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_bytes32,t_address)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:8"
+            },
+            {
+              "label": "readFileRule",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_mapping(t_bytes32,t_string_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:9"
+            },
+            {
+              "label": "fileWriters",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_mapping(t_bytes32,t_array(t_address)dyn_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:10"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_address)": {
+              "label": "mapping(bytes32 => address)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_array(t_address)dyn_storage)": {
+              "label": "mapping(bytes32 => address[])",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_string_storage)": {
+              "label": "mapping(bytes32 => string)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      }
+    },
+    {
+      "@openzeppelin/contracts/access/Ownable.sol:Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:20",
+        "inherit": [
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:28"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "@openzeppelin/contracts/utils/Context.sol:Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:16",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "contracts/FileAccessControl.sol:FileAccessControl": {
+        "src": "contracts/FileAccessControl.sol:6",
+        "version": {
+          "withMetadata": "c03322f8fb64f464546e97c52d3fac8d1a607dc5dca6ab534446365302880329",
+          "withoutMetadata": "2ab01e42f27eeafc0a46529a61be49fbacde7368a6e4ca7fa89e85b2b6f20895",
+          "linkedWithoutMetadata": "2ab01e42f27eeafc0a46529a61be49fbacde7368a6e4ca7fa89e85b2b6f20895"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "setDataOwner(address,bool)",
+          "addFile(bytes32,string,address[])",
+          "updateFile(bytes32,bytes32)",
+          "updateReadRule(bytes32,bytes32,string)",
+          "updateWriteList(bytes32,bytes32,address[])"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "dataOwner",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_bool)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:7"
+            },
+            {
+              "label": "fileOwners",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_bytes32,t_address)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:8"
+            },
+            {
+              "label": "readFileRule",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_mapping(t_bytes32,t_string_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:9"
+            },
+            {
+              "label": "fileWriters",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_mapping(t_bytes32,t_array(t_address)dyn_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:10"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_address)": {
+              "label": "mapping(bytes32 => address)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_array(t_address)dyn_storage)": {
+              "label": "mapping(bytes32 => address[])",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_string_storage)": {
+              "label": "mapping(bytes32 => string)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      }
+    },
+    {
+      "@openzeppelin/contracts/access/Ownable.sol:Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:20",
+        "inherit": [
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:28"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "@openzeppelin/contracts/utils/Context.sol:Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:16",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "contracts/FileAccessControl.sol:FileAccessControl": {
+        "src": "contracts/FileAccessControl.sol:6",
+        "version": {
+          "withMetadata": "1a86729556516c0fa4a2d2fa2146a3852a1f3504cae0d1ef9ccf8586eec01dba",
+          "withoutMetadata": "fb2212b84bcb957eab585156361afbfb5636549da8418cec563af6d48c115a83",
+          "linkedWithoutMetadata": "fb2212b84bcb957eab585156361afbfb5636549da8418cec563af6d48c115a83"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "setDataOwner(address,bool)",
+          "addFile(bytes32,string,address[])",
+          "updateFile(bytes32,bytes32)",
+          "updateReadRule(bytes32,bytes32,string)",
+          "updateWriteList(bytes32,bytes32,address[])"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "dataOwner",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_bool)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:7"
+            },
+            {
+              "label": "fileOwners",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_bytes32,t_address)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:8"
+            },
+            {
+              "label": "readFileRule",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_mapping(t_bytes32,t_string_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:9"
+            },
+            {
+              "label": "fileWriters",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_mapping(t_bytes32,t_array(t_address)dyn_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:10"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_address)": {
+              "label": "mapping(bytes32 => address)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_array(t_address)dyn_storage)": {
+              "label": "mapping(bytes32 => address[])",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_string_storage)": {
+              "label": "mapping(bytes32 => string)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      }
+    },
+    {
+      "@openzeppelin/contracts/access/Ownable.sol:Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:20",
+        "inherit": [
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:28"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "@openzeppelin/contracts/utils/Context.sol:Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:16",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "contracts/FileAccessControl.sol:FileAccessControl": {
+        "src": "contracts/FileAccessControl.sol:6",
+        "version": {
+          "withMetadata": "06815d45bb725093d6427e67e4411e0615aba7d392db7c40f0b12c13ce939603",
+          "withoutMetadata": "fb2212b84bcb957eab585156361afbfb5636549da8418cec563af6d48c115a83",
+          "linkedWithoutMetadata": "fb2212b84bcb957eab585156361afbfb5636549da8418cec563af6d48c115a83"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "setDataOwner(address,bool)",
+          "addFile(bytes32,string,address[])",
+          "updateFile(bytes32,bytes32)",
+          "updateReadRule(bytes32,bytes32,string)",
+          "updateWriteList(bytes32,bytes32,address[])"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "dataOwner",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_bool)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:7"
+            },
+            {
+              "label": "fileOwners",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_bytes32,t_address)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:8"
+            },
+            {
+              "label": "readFileRule",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_mapping(t_bytes32,t_string_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:9"
+            },
+            {
+              "label": "fileWriters",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_mapping(t_bytes32,t_array(t_address)dyn_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:10"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_address)": {
+              "label": "mapping(bytes32 => address)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_array(t_address)dyn_storage)": {
+              "label": "mapping(bytes32 => address[])",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_string_storage)": {
+              "label": "mapping(bytes32 => string)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      }
+    },
+    {
+      "@openzeppelin/contracts/access/Ownable.sol:Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:20",
+        "inherit": [
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:28"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "@openzeppelin/contracts/token/ERC20/IERC20.sol:IERC20": {
+        "src": "@openzeppelin/contracts/token/ERC20/IERC20.sol:9",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "totalSupply()",
+          "balanceOf(address)",
+          "transfer(address,uint256)",
+          "allowance(address,address)",
+          "approve(address,uint256)",
+          "transferFrom(address,address,uint256)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol:IERC20Metadata": {
+        "src": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol:13",
+        "inherit": [
+          "@openzeppelin/contracts/token/ERC20/IERC20.sol:IERC20"
+        ],
+        "libraries": [],
+        "methods": [
+          "name()",
+          "symbol()",
+          "decimals()"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "@openzeppelin/contracts/utils/Context.sol:Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:16",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "contracts/FileAccessControl.sol:FileAccessControl": {
+        "src": "contracts/FileAccessControl.sol:6",
+        "version": {
+          "withMetadata": "237aac2c5c9e82dd4a143735853f1c36bd6f546249ca304d4640dcdb01413f7f",
+          "withoutMetadata": "3f4aa800429b2dbd9100b6e478ae002bdc075e198c971d9680af9f1e98071b3a",
+          "linkedWithoutMetadata": "3f4aa800429b2dbd9100b6e478ae002bdc075e198c971d9680af9f1e98071b3a"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "setDataOwner(address,bool)",
+          "addFile(bytes32,string,address[])",
+          "updateFile(bytes32,bytes32)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "dataOwner",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_bool)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:7"
+            },
+            {
+              "label": "fileOwners",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_bytes32,t_address)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:8"
+            },
+            {
+              "label": "readFileRule",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_mapping(t_bytes32,t_string_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:9"
+            },
+            {
+              "label": "fileWriters",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_mapping(t_bytes32,t_array(t_address)dyn_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:10"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_address)": {
+              "label": "mapping(bytes32 => address)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_array(t_address)dyn_storage)": {
+              "label": "mapping(bytes32 => address[])",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_string_storage)": {
+              "label": "mapping(bytes32 => string)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      },
+      "contracts/test/ERC20Test.sol:ERC20Test": {
+        "src": "contracts/test/ERC20Test.sol:33",
+        "version": {
+          "withMetadata": "48eafb2f1643fffa2b22c34e678e675a996b56eb8ad89c65265de7acb5cf648f",
+          "withoutMetadata": "d18a3fc84396a24d8cba785e64b8dc23adf3975cd6b6b966df546e5dc08af6ac",
+          "linkedWithoutMetadata": "d18a3fc84396a24d8cba785e64b8dc23adf3975cd6b6b966df546e5dc08af6ac"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol:IERC20Metadata",
+          "@openzeppelin/contracts/token/ERC20/IERC20.sol:IERC20",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "(string,string,uint256)",
+          "name()",
+          "symbol()",
+          "decimals()",
+          "totalSupply()",
+          "balanceOf(address)",
+          "transfer(address,uint256)",
+          "allowance(address,address)",
+          "approve(address,uint256)",
+          "transferFrom(address,address,uint256)",
+          "increaseAllowance(address,uint256)",
+          "decreaseAllowance(address,uint256)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "ERC20Test",
+            "src": "contracts/test/ERC20Test.sol:52"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_balances",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_mapping(t_address,t_uint256)",
+              "contract": "ERC20Test",
+              "src": "contracts/test/ERC20Test.sol:34"
+            },
+            {
+              "label": "_allowances",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_mapping(t_address,t_uint256))",
+              "contract": "ERC20Test",
+              "src": "contracts/test/ERC20Test.sol:36"
+            },
+            {
+              "label": "_totalSupply",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_uint256",
+              "contract": "ERC20Test",
+              "src": "contracts/test/ERC20Test.sol:38"
+            },
+            {
+              "label": "_name",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_string_storage",
+              "contract": "ERC20Test",
+              "src": "contracts/test/ERC20Test.sol:40"
+            },
+            {
+              "label": "_symbol",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_string_storage",
+              "contract": "ERC20Test",
+              "src": "contracts/test/ERC20Test.sol:41"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_mapping(t_address,t_mapping(t_address,t_uint256))": {
+              "label": "mapping(address => mapping(address => uint256))",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_uint256)": {
+              "label": "mapping(address => uint256)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.19"
+      }
+    },
+    {
+      "@openzeppelin/contracts/access/Ownable.sol:Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:20",
+        "inherit": [
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:28"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.17"
+      },
+      "@openzeppelin/contracts/utils/Context.sol:Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:16",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.17"
+      },
+      "contracts/FileAccessControl.sol:FileAccessControl": {
+        "src": "contracts/FileAccessControl.sol:6",
+        "version": {
+          "withMetadata": "bf53d0b029a6bdb1449c6f0042bc2620d075b8c2223340bca490281f6ea83400",
+          "withoutMetadata": "3f4aa800429b2dbd9100b6e478ae002bdc075e198c971d9680af9f1e98071b3a",
+          "linkedWithoutMetadata": "3f4aa800429b2dbd9100b6e478ae002bdc075e198c971d9680af9f1e98071b3a"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "setDataOwner(address,bool)",
+          "addFile(bytes32,string,address[])",
+          "updateFile(bytes32,bytes32)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "dataOwner",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_bool)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:7"
+            },
+            {
+              "label": "fileOwners",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_bytes32,t_address)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:8"
+            },
+            {
+              "label": "readFileRule",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_mapping(t_bytes32,t_string_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:9"
+            },
+            {
+              "label": "fileWriters",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_mapping(t_bytes32,t_array(t_address)dyn_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:10"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_address)": {
+              "label": "mapping(bytes32 => address)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_array(t_address)dyn_storage)": {
+              "label": "mapping(bytes32 => address[])",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_string_storage)": {
+              "label": "mapping(bytes32 => string)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.17"
+      }
+    },
+    {
+      "@openzeppelin/contracts/access/Ownable.sol:Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:20",
+        "inherit": [
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:28"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.17"
+      },
+      "@openzeppelin/contracts/token/ERC20/IERC20.sol:IERC20": {
+        "src": "@openzeppelin/contracts/token/ERC20/IERC20.sol:9",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "totalSupply()",
+          "balanceOf(address)",
+          "transfer(address,uint256)",
+          "allowance(address,address)",
+          "approve(address,uint256)",
+          "transferFrom(address,address,uint256)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.17"
+      },
+      "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol:IERC20Metadata": {
+        "src": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol:13",
+        "inherit": [
+          "@openzeppelin/contracts/token/ERC20/IERC20.sol:IERC20"
+        ],
+        "libraries": [],
+        "methods": [
+          "name()",
+          "symbol()",
+          "decimals()"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.17"
+      },
+      "@openzeppelin/contracts/utils/Context.sol:Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:16",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.17"
+      },
+      "contracts/FileAccessControl.sol:FileAccessControl": {
+        "src": "contracts/FileAccessControl.sol:6",
+        "version": {
+          "withMetadata": "614fd18717c3417ecf57e4a56799390d5ab0f4ca0c7fc6aba440ca19b4c1ab9b",
+          "withoutMetadata": "bed9ff4bf8e885ca7c8f447931d0da51e0ee7bdad420c4ece39cdfc62b5d4a27",
+          "linkedWithoutMetadata": "bed9ff4bf8e885ca7c8f447931d0da51e0ee7bdad420c4ece39cdfc62b5d4a27"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "setDataOwner(address,bool)",
+          "addFile(bytes32,string,address[])"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "dataOwner",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_bool)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:7"
+            },
+            {
+              "label": "fileOwners",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_bytes32,t_array(t_address)dyn_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:8"
+            },
+            {
+              "label": "fileReaders",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_mapping(t_bytes32,t_array(t_address)dyn_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:9"
+            },
+            {
+              "label": "fileWriters",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_mapping(t_bytes32,t_array(t_address)dyn_storage)",
+              "contract": "FileAccessControl",
+              "src": "contracts/FileAccessControl.sol:10"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_array(t_address)dyn_storage)": {
+              "label": "mapping(bytes32 => address[])",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.17"
+      },
+      "contracts/test/ERC20Test.sol:ERC20Test": {
+        "src": "contracts/test/ERC20Test.sol:33",
+        "version": {
+          "withMetadata": "9f5b78e4046fd32a04dcae32c1bcb6bedac6547bdc3ef385b3cd51c8b528ce3f",
+          "withoutMetadata": "d18a3fc84396a24d8cba785e64b8dc23adf3975cd6b6b966df546e5dc08af6ac",
+          "linkedWithoutMetadata": "d18a3fc84396a24d8cba785e64b8dc23adf3975cd6b6b966df546e5dc08af6ac"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol:IERC20Metadata",
+          "@openzeppelin/contracts/token/ERC20/IERC20.sol:IERC20",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "(string,string,uint256)",
+          "name()",
+          "symbol()",
+          "decimals()",
+          "totalSupply()",
+          "balanceOf(address)",
+          "transfer(address,uint256)",
+          "allowance(address,address)",
+          "approve(address,uint256)",
+          "transferFrom(address,address,uint256)",
+          "increaseAllowance(address,uint256)",
+          "decreaseAllowance(address,uint256)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "ERC20Test",
+            "src": "contracts/test/ERC20Test.sol:52"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_balances",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_mapping(t_address,t_uint256)",
+              "contract": "ERC20Test",
+              "src": "contracts/test/ERC20Test.sol:34"
+            },
+            {
+              "label": "_allowances",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_mapping(t_address,t_uint256))",
+              "contract": "ERC20Test",
+              "src": "contracts/test/ERC20Test.sol:36"
+            },
+            {
+              "label": "_totalSupply",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_uint256",
+              "contract": "ERC20Test",
+              "src": "contracts/test/ERC20Test.sol:38"
+            },
+            {
+              "label": "_name",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_string_storage",
+              "contract": "ERC20Test",
+              "src": "contracts/test/ERC20Test.sol:40"
+            },
+            {
+              "label": "_symbol",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_string_storage",
+              "contract": "ERC20Test",
+              "src": "contracts/test/ERC20Test.sol:41"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_mapping(t_address,t_mapping(t_address,t_uint256))": {
+              "label": "mapping(address => mapping(address => uint256))",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_uint256)": {
+              "label": "mapping(address => uint256)",
+              "numberOfBytes": "32"
+            },
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true,
+          "namespaces": {}
+        },
+        "solcVersion": "0.8.17"
+      }
+    }
+  ]
+}
