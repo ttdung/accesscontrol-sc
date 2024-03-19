@@ -5,12 +5,24 @@ import { CONTRACT_ADDRESS } from "../scripts/common";
 // https://hardhat.org/guides/create-task.html
 
 task("updatedata", "Update file")
+.addParam("account", "account name")
 .addParam("oldfilename", "old file name")
 .addParam("newfilename", "new file name")
 .setAction( async (taskArgs, hre) => {
     const [deployer, dev0, dev1, dev2] = await (hre as any).ethers.getSigners();
-    console.log('deployer address', deployer.address);
-    console.log('dev0 address', dev0.address);
+
+    var account = dev0
+    switch (taskArgs.account) {
+      case 'dev1':
+        account = dev1;
+        break;
+      case 'dev2':
+        account = dev2;
+        break;
+      default:
+        break;
+    }
+    console.log(taskArgs.account,' address: ', account.address);
 
     const FileAccessControlFactory = await await (hre as any).ethers.getContractFactory(
         "FileAccessControl"
@@ -28,7 +40,7 @@ task("updatedata", "Update file")
       console.log("proposalId: ", proposalId)
     
       // User Dev1: submit proposal to update "abc.txt" => "xyz.txt"
-      const submitProposal = await fileAc.connect(dev1).submitUpdateFileProposal(proposalId, fileId, oldname, newname);
+      const submitProposal = await fileAc.connect(account).submitUpdateFileProposal(proposalId, fileId, oldname, newname);
       const submitProposalTxReceipt =  await submitProposal.wait();
       console.log('uploadFileTxReceipt', Boolean(submitProposalTxReceipt.status), submitProposalTxReceipt.transactionHash);
     

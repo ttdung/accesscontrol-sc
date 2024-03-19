@@ -2,7 +2,7 @@ import { ethers } from "hardhat";
 
 async function main() {
   const [deployer] = await ethers.getSigners();
-  console.log('deployer address', deployer.address)
+  console.log('deployer address (admin)', deployer.address)
 
   const deployerBalance = await ethers.provider.getBalance(deployer.address);
   console.log('deployerBalance', deployerBalance);

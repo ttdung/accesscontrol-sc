@@ -5,16 +5,17 @@ dotenv.config();
 import { CONTRACT_ADDRESS } from "./common";
 
 
-async function approveUpdate(proposalId, fileAc) {
-  const [deployer, dev0, dev1, dev2] = await ethers.getSigners();
-  const approveProposal = await fileAc.connect(dev2).approveProposal(proposalId);
+async function approveUpdate(account, proposalId, fileAc) {
+  const approveProposal = await fileAc.connect(account).approveProposal(proposalId);
   const approveProposalTxReceipt =  await approveProposal.wait();
   console.log('uploadFileTxReceipt', Boolean(approveProposalTxReceipt.status), approveProposalTxReceipt.transactionHash);
 } 
 
 async function main() {
   const [deployer, dev0, dev1, dev2] = await ethers.getSigners();
-  // console.log('deployer address', deployer.address);
+
+  const account = dev2
+  console.log('Listener address: ', account.address);
 
   const attr = "student|CS";
   const uid = "du"; 
@@ -73,7 +74,7 @@ async function main() {
 
     // User Dev2: approve proposal to update file
     console.log("\nApproving proposal: ", proposalId)
-    approveUpdate(proposalId, fileAc);
+    approveUpdate(account, proposalId, fileAc);
   });
 
   //   event UpdateFile(bytes32 indexed fileId, string oldname, string newname);

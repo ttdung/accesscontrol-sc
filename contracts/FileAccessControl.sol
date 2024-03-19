@@ -106,6 +106,21 @@ contract FileAccessControl is Ownable {
         writeProposal[proposalId].oldname,
         writeProposal[proposalId].newname
       );
+
+
+      // Check if ENOUGH Signatures
+      if (writeProposal[proposalId].proposer.length >= files[writeProposal[proposalId].fileId].threshold) {
+      // execute updated
+      files[writeProposal[proposalId].fileId].name = writeProposal[proposalId].newname;
+
+      emit UpdateFile(
+        proposalId,
+        writeProposal[proposalId].fileId,
+        writeProposal[proposalId].oldname,
+        writeProposal[proposalId].newname
+      );
+    }
+
     }
   }
 
@@ -116,6 +131,7 @@ contract FileAccessControl is Ownable {
 
     writeProposal[proposalId].proposer.push(msg.sender);
 
+    // Check if ENOUGH Signatures
     if (writeProposal[proposalId].proposer.length >= files[writeProposal[proposalId].fileId].threshold) {
       // execute updated
       files[writeProposal[proposalId].fileId].name = writeProposal[proposalId].newname;
