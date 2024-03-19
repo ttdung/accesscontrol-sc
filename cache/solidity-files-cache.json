@@ -529,47 +529,6 @@
       "artifacts": [
         "IERC20Metadata"
       ]
-    },
-    "/home/mmt/src/sc/accesscontrol/contracts/FileAccessControl0.sol": {
-      "lastModificationDate": 1710748415912,
-      "contentHash": "77986e2db5b934bcfaa0eaeb1142d792",
-      "sourceName": "contracts/FileAccessControl0.sol",
-      "solcConfig": {
-        "version": "0.8.19",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "storageLayout",
-                "metadata",
-                "devdoc",
-                "userdoc",
-                "evm.methodIdentifiers",
-                "evm.gasEstimates",
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/access/Ownable.sol"
-      ],
-      "versionPragmas": [
-        "0.8.19"
-      ],
-      "artifacts": [
-        "FileAccessControl0"
-      ]
     }
   }
 }

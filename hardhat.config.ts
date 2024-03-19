@@ -14,6 +14,7 @@ import "hardhat-finder";
 
 import "./tasks/accounts";
 import "./tasks/addfiles";
+import "./tasks/updatedata";
 
 dotenv.config();
 

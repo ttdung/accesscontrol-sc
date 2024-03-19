@@ -17,7 +17,7 @@ async function main() {
   // console.log('deployer address', deployer.address);
 
   const attr = "student|CS";
-  const uid = "du";
+  const uid = "du"; 
   console.log('Attributes: ', attr);
 
   const FileAccessControlFactory = await ethers.getContractFactory(
