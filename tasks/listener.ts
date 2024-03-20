@@ -21,6 +21,7 @@ task("listener", "Listner by <account> have <attributes>")
       default:
         break;
     }
+  
     console.log(taskArgs.account,' address: ', account.address);
 
     const attr = taskArgs.attribute;//"student|CS";
@@ -31,6 +32,8 @@ task("listener", "Listner by <account> have <attributes>")
       "FileAccessControl"
     );
     const fileAc = FileAccessControlFactory.attach(CONTRACT_ADDRESS);
+
+   new Promise(
 
     fileAc.on('AddFile', (fileId, owner, name, readRule, writeList, threshold, eventData) => {
       let addFileEvent ={
@@ -64,9 +67,11 @@ task("listener", "Listner by <account> have <attributes>")
   
     });
   
-    });
+    }));
+    
   
   //   event UpdateProposal(bytes32 indexed fileId, string oldname, string newname);
+    new Promise (
     fileAc.on('UpdateProposal', (proposalId, fileId, oldname, newname, eventData) => {
       let updateFileEvent ={
           proposalId, fileId, oldname, newname, //, eventData
@@ -81,19 +86,19 @@ task("listener", "Listner by <account> have <attributes>")
       // User Dev2: approve proposal to update file
       console.log("\nApproving proposal: ", proposalId)
       approveUpdate(hre, account, proposalId, fileAc);
-    });
+    }));
   
     //   event UpdateFile(bytes32 indexed fileId, string oldname, string newname);
-    fileAc.on('UpdateFile', (proposalId, fileId, oldname, newname, eventData) => {
+    new Promise (
+      fileAc.on('UpdateFile', (proposalId, fileId, oldname, newname, eventData) => {
       let updateFileEvent ={
           fileId, oldname, newname, //, eventData
       }
       console.log("\nEvent UpdateFile:")
       console.log(JSON.stringify(updateFileEvent, null, 4));
-    });
-
-  
+    }));
 });
+
 
 async function approveUpdate(hre, account, proposalId, fileAc) {
     const [deployer, dev0, dev1, dev2] = await (hre as any).ethers.getSigners();

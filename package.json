@@ -19,7 +19,7 @@
     "setDO": "hardhat setdo --network devnet",
     "addFile": "hardhat addfiles --network devnet",
     "updateFile": "hardhat updatedata --network devnet",
-    "listener": "hardhat run scripts/listener.ts --network devnet",
+    "listener": "hardhat listener --network devnet",
     "verify": "hardhat verify"
   },
   "repository": {
