@@ -8,6 +8,7 @@ task("listener", "Listner by <account> have <attributes>")
 .addParam("account", "account name")
 .addParam("attribute", "attributes")
 .setAction( async (taskArgs, hre) => {
+
     const [deployer, dev0, dev1, dev2] = await (hre as any).ethers.getSigners();
 
     var account = dev0
@@ -21,9 +22,10 @@ task("listener", "Listner by <account> have <attributes>")
       default:
         break;
     }
-  
     console.log(taskArgs.account,' address: ', account.address);
 
+    var request = require('request');
+    // const attr = "student|CS";
     const attr = taskArgs.attribute;//"student|CS";
     const uid = "du"; 
     console.log('Attributes: ', attr);
@@ -33,7 +35,7 @@ task("listener", "Listner by <account> have <attributes>")
     );
     const fileAc = FileAccessControlFactory.attach(CONTRACT_ADDRESS);
 
-   new Promise(
+    var readrule ='';
 
     fileAc.on('AddFile', (fileId, owner, name, readRule, writeList, threshold, eventData) => {
       let addFileEvent ={
@@ -41,8 +43,7 @@ task("listener", "Listner by <account> have <attributes>")
       }
       console.log("\nEvent AddFile:")
       console.log(JSON.stringify(addFileEvent, null, 4));
-      
-      var request = require('request');
+      readrule = readRule;
       
       const options = {
         url: 'http://127.0.0.1:8081/matchpolicy',
@@ -53,25 +54,20 @@ task("listener", "Listner by <account> have <attributes>")
             attr: attr,
             storeenckeyfile: name 
         }
-    };
+      };
     
-    request.post(options, (err, res, body) => {
+      request.post(options, (err, res, body) => {
         if (err) {
             return console.log(err);
         }
         console.log(`Status: ${res.statusCode}`);
         if (res.statusCode == 200) {
-          console.log(body);
-               
+          console.log(body);          
         }
+      });
   
     });
-  
-    }));
     
-  
-  //   event UpdateProposal(bytes32 indexed fileId, string oldname, string newname);
-    new Promise (
     fileAc.on('UpdateProposal', (proposalId, fileId, oldname, newname, eventData) => {
       let updateFileEvent ={
           proposalId, fileId, oldname, newname, //, eventData
@@ -86,17 +82,40 @@ task("listener", "Listner by <account> have <attributes>")
       // User Dev2: approve proposal to update file
       console.log("\nApproving proposal: ", proposalId)
       approveUpdate(hre, account, proposalId, fileAc);
-    }));
+    });
   
     //   event UpdateFile(bytes32 indexed fileId, string oldname, string newname);
-    new Promise (
-      fileAc.on('UpdateFile', (proposalId, fileId, oldname, newname, eventData) => {
+    fileAc.on('UpdateFile', (proposalId, fileId, oldname, newname, eventData) => {
       let updateFileEvent ={
           fileId, oldname, newname, //, eventData
       }
       console.log("\nEvent UpdateFile:")
       console.log(JSON.stringify(updateFileEvent, null, 4));
-    }));
+
+      const options1 = {
+        url: 'http://127.0.0.1:8081/matchpolicy',
+        json: true,
+        body: {
+            uid: uid,
+            policy: readrule,
+            attr: attr,
+            storeenckeyfile: newname 
+        }
+      }
+  
+      request.post(options1, (err, res, body) => {
+        if (err) {
+          return console.log(err);
+        }
+        console.log(`Status: ${res.statusCode}`);
+        if (res.statusCode == 200) {
+         console.log(body);     
+        }
+  
+      });
+    });
+
+    await new Promise(res => setTimeout(() => res(null), 120*60000));
 });
 
 
@@ -105,4 +124,4 @@ async function approveUpdate(hre, account, proposalId, fileAc) {
     const approveProposal = await fileAc.connect(account).approveProposal(proposalId);
     const approveProposalTxReceipt =  await approveProposal.wait();
     console.log('uploadFileTxReceipt', Boolean(approveProposalTxReceipt.status), approveProposalTxReceipt.transactionHash);
-  } 
+} 

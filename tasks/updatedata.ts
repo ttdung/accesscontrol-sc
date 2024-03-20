@@ -6,6 +6,7 @@ import { CONTRACT_ADDRESS } from "../scripts/common";
 
 task("updatedata", "Update file")
 .addParam("account", "account name")
+.addParam("fileid", "fileid")
 .addParam("oldfilename", "old file name")
 .addParam("newfilename", "new file name")
 .setAction( async (taskArgs, hre) => {
@@ -30,9 +31,8 @@ task("updatedata", "Update file")
       const fileAc = FileAccessControlFactory.attach(CONTRACT_ADDRESS);
       
       const oldname = taskArgs.oldfilename;
-      const fileId = await (hre as any).ethers.utils.keccak256((hre as any).ethers.utils.toUtf8Bytes(oldname));
-     // const fileId = "0x74405ea03568a5286c93fdaf15fd483b3dbd704f04cdac36cf04fe389266ad30"
-      console.log('fileId', fileId);
+      const fileId = taskArgs.fileid;//await (hre as any).ethers.utils.keccak256((hre as any).ethers.utils.toUtf8Bytes(oldname));
+      console.log('fileId: ', fileId);
     
       const newname = taskArgs.newfilename;
     
