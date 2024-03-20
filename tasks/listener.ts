@@ -27,11 +27,11 @@ task("listener", "Listner by <account> have <attributes>")
     const uid = "du"; 
     console.log('Attributes: ', attr);
   
-    const FileAccessControlFactory = await await (hre as any).ethers.getContractFactory(
+    const FileAccessControlFactory = await (hre as any).ethers.getContractFactory(
       "FileAccessControl"
     );
     const fileAc = FileAccessControlFactory.attach(CONTRACT_ADDRESS);
-    
+
     fileAc.on('AddFile', (fileId, owner, name, readRule, writeList, threshold, eventData) => {
       let addFileEvent ={
           fileId, owner, name, readRule, writeList, threshold //, eventData
@@ -91,11 +91,12 @@ task("listener", "Listner by <account> have <attributes>")
       console.log("\nEvent UpdateFile:")
       console.log(JSON.stringify(updateFileEvent, null, 4));
     });
+
   
 });
 
 async function approveUpdate(hre, account, proposalId, fileAc) {
-    const [deployer, dev0, dev1, dev2] = await await (hre as any).ethers.getSigners();
+    const [deployer, dev0, dev1, dev2] = await (hre as any).ethers.getSigners();
     const approveProposal = await fileAc.connect(account).approveProposal(proposalId);
     const approveProposalTxReceipt =  await approveProposal.wait();
     console.log('uploadFileTxReceipt', Boolean(approveProposalTxReceipt.status), approveProposalTxReceipt.transactionHash);

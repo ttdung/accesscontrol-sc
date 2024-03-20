@@ -21,6 +21,9 @@ async function main() {
   const uid = "du"; 
   console.log('Attributes: ', attr);
 
+  var readrule = "student and (MATH or CS)"
+  var request = require('request');
+
   const FileAccessControlFactory = await ethers.getContractFactory(
     "FileAccessControl"
   );
@@ -33,7 +36,7 @@ async function main() {
     console.log("\nEvent AddFile:")
     console.log(JSON.stringify(addFileEvent, null, 4));
     
-    var request = require('request');
+    readrule = readRule;
     
     const options = {
       url: 'http://127.0.0.1:8081/matchpolicy',
@@ -85,8 +88,32 @@ async function main() {
     console.log("\nEvent UpdateFile:")
     console.log(JSON.stringify(updateFileEvent, null, 4));
 
-  });
-}
+    const options1 = {
+      url: 'http://127.0.0.1:8081/matchpolicy',
+      json: true,
+      body: {
+          uid: uid,
+          policy: readrule,
+          attr: attr,
+          storeenckeyfile: newname 
+      }
+    }
+
+    request.post(options1, (err, res, body) => {
+      if (err) {
+        return console.log(err);
+      }
+      console.log(`Status: ${res.statusCode}`);
+      if (res.statusCode == 200) {
+       console.log(body);     
+      }
+
+    });
+});
+
+};
+
+
 
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
