@@ -36,6 +36,7 @@ task("listener", "Listner by <account> have <attributes>")
     const fileAc = FileAccessControlFactory.attach(CONTRACT_ADDRESS);
 
     var readrule ='';
+    // var wlist = [];
 
     fileAc.on('AddFile', (fileId, owner, name, readRule, writeList, threshold, eventData) => {
       let addFileEvent ={
@@ -44,7 +45,11 @@ task("listener", "Listner by <account> have <attributes>")
       console.log("\nEvent AddFile:")
       console.log(JSON.stringify(addFileEvent, null, 4));
       readrule = readRule;
-      
+
+      // for (var i = 0 ; i < writeList.length ; i++) {
+      //   wlist[i] = writeList[i];
+      // }
+
       const options = {
         url: 'http://127.0.0.1:8081/matchpolicy',
         json: true,
@@ -79,9 +84,11 @@ task("listener", "Listner by <account> have <attributes>")
       // 1. Check if this node has write permission
       // 2. check if proposal is valid
   
-      // User Dev2: approve proposal to update file
-      console.log("\nApproving proposal: ", proposalId)
-      approveUpdate(hre, account, proposalId, fileAc);
+      // User Dev1,2: approve proposal to update file
+      if (account == dev1 || account == dev2) {
+        console.log("\nApproving proposal: ", proposalId)
+        approveUpdate(hre, account, proposalId, fileAc);
+      }
     });
   
     //   event UpdateFile(bytes32 indexed fileId, string oldname, string newname);
@@ -92,7 +99,7 @@ task("listener", "Listner by <account> have <attributes>")
       console.log("\nEvent UpdateFile:")
       console.log(JSON.stringify(updateFileEvent, null, 4));
 
-      const options1 = {
+      const options = {
         url: 'http://127.0.0.1:8081/matchpolicy',
         json: true,
         body: {
@@ -103,7 +110,7 @@ task("listener", "Listner by <account> have <attributes>")
         }
       }
   
-      request.post(options1, (err, res, body) => {
+      request.post(options, (err, res, body) => {
         if (err) {
           return console.log(err);
         }

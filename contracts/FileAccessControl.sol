@@ -54,7 +54,7 @@ contract FileAccessControl is Ownable {
   ) external {
     // TODO: verify fileId existed or not
 
-    require(dataOwner[msg.sender], "Only data owner");
+    require(dataOwner[msg.sender], "REQUIRE data owner");
 
     files[fileId].owner = msg.sender;
     files[fileId].name = name;
@@ -92,7 +92,7 @@ contract FileAccessControl is Ownable {
 
     require(fid == proposalId, "Invalid proposal ID");
     require(isInList(msg.sender, files[fileId].writers) == true, "NO write permission");
-    require(compare(files[fileId].name, oldname) == true, "Not matching file name");
+    require(compare(files[fileId].name, oldname) == true, "NOT matching file name");
 
     if (isInList(msg.sender, writeProposal[fileId].proposer) == false) {
       writeProposal[proposalId].proposer.push(msg.sender);

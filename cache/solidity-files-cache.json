@@ -287,8 +287,8 @@
       ]
     },
     "/home/mmt/src/sc/accesscontrol/contracts/FileAccessControl.sol": {
-      "lastModificationDate": 1710885744284,
-      "contentHash": "d19bc02f1fe89e1ecf7a13e6df76ad03",
+      "lastModificationDate": 1710929777236,
+      "contentHash": "e88d33c92e38cb5779cdf2b8f737a10d",
       "sourceName": "contracts/FileAccessControl.sol",
       "solcConfig": {
         "version": "0.8.19",

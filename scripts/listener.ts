@@ -17,22 +17,6 @@ async function main() {
   const account = dev2
   console.log('Dev2 address: ', account.address);
 
-  const prompt = require('prompt');
-
-prompt.start();
-
-prompt.get(['uid', 'attribute'], function (err, uid, attr) {
-    if (err) { return onErr(err); }
-    console.log('Command-line input received:');
-    console.log('  user_id: ' + uid);
-    console.log('  Attribute: ' + attr);
-});
-
-function onErr(err) {
-    console.log(err);
-    return 1;
-}
-
   const attr = "student|CS";
   const uid = "du"; 
   console.log('Attributes: ', attr);

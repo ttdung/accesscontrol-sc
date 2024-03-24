@@ -1,6 +1,7 @@
 import { ethers } from "hardhat";
 
 async function main() {
+
   const [deployer] = await ethers.getSigners();
   console.log('deployer address (admin)', deployer.address)
 
@@ -12,9 +13,11 @@ async function main() {
   );
   const fileAc = await FileAccessControlFactory.deploy();
   const receipt = await fileAc.deployed();
+  
   console.log(
     `FileAccessControl is deploy at ${fileAc.address} \nTxHash ${receipt.deployTransaction.hash}`
   );
+
 }
 
 // We recommend this pattern to be able to use async/await everywhere

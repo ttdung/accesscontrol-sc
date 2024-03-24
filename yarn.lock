@@ -919,30 +919,30 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@nomicfoundation/edr-linux-x64-gnu@0.3.0":
-  version "0.3.0"
-  resolved "https://registry.npmjs.org/@nomicfoundation/edr-linux-x64-gnu/-/edr-linux-x64-gnu-0.3.0.tgz"
-  integrity sha512-ODi6NytOIYJLaKypzbgb7lWvR/YAOj6MhVdj0ZlySjyG/r+4yLfEdWXalYeMtTPw7oWwo7cncZNT7vaxcboSfQ==
+"@nomicfoundation/edr-linux-x64-gnu@0.3.2":
+  version "0.3.2"
+  resolved "https://registry.npmjs.org/@nomicfoundation/edr-linux-x64-gnu/-/edr-linux-x64-gnu-0.3.2.tgz"
+  integrity sha512-ouPdphHNsyO7wqwa4hwahC5WqBglK/fIvMmhR/SXNZ9qruIpsA8ZZKIURaHMOv/2h2BbNGcyTX9uEk6+5rK/MQ==
 
-"@nomicfoundation/edr-linux-x64-musl@0.3.0":
-  version "0.3.0"
-  resolved "https://registry.npmjs.org/@nomicfoundation/edr-linux-x64-musl/-/edr-linux-x64-musl-0.3.0.tgz"
-  integrity sha512-4+5kcETwTrrrRKl7Xi2RsEgN391w1ZyPlZWSC73z3zqHtllriSiynn7yeJedpLOPMUTvZKaoZHf6Ahguj6/UaA==
+"@nomicfoundation/edr-linux-x64-musl@0.3.2":
+  version "0.3.2"
+  resolved "https://registry.npmjs.org/@nomicfoundation/edr-linux-x64-musl/-/edr-linux-x64-musl-0.3.2.tgz"
+  integrity sha512-sRhwhiPbkpJMOUwXW1FZw9ks6xWyQhIhM0E8o3TXEXKSPKTE6whQLEk1R37iFITaI36vb6rSwLKTU1cb32gCoA==
 
-"@nomicfoundation/edr@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.npmjs.org/@nomicfoundation/edr/-/edr-0.3.0.tgz"
-  integrity sha512-ygGAHss97Ii1TqPEo7lz1vfVKe/NhvvDK+78ehayOULhb1dxro+zP5PwVtXEgf5Qpum2TLIu2vZ7EqI9ft9ZwQ==
+"@nomicfoundation/edr@^0.3.1":
+  version "0.3.2"
+  resolved "https://registry.npmjs.org/@nomicfoundation/edr/-/edr-0.3.2.tgz"
+  integrity sha512-HGWtjibAK1mo4I2A7nJ/fXqe/J9G54OrSPJnnkY2K8TiXotYLShGd9GvHkae3PuFjTJKm6ZgBy7tveJj5yrCfw==
   optionalDependencies:
-    "@nomicfoundation/edr-darwin-arm64" "0.3.0"
-    "@nomicfoundation/edr-darwin-x64" "0.3.0"
-    "@nomicfoundation/edr-linux-arm64-gnu" "0.3.0"
-    "@nomicfoundation/edr-linux-arm64-musl" "0.3.0"
-    "@nomicfoundation/edr-linux-x64-gnu" "0.3.0"
-    "@nomicfoundation/edr-linux-x64-musl" "0.3.0"
-    "@nomicfoundation/edr-win32-arm64-msvc" "0.3.0"
-    "@nomicfoundation/edr-win32-ia32-msvc" "0.3.0"
-    "@nomicfoundation/edr-win32-x64-msvc" "0.3.0"
+    "@nomicfoundation/edr-darwin-arm64" "0.3.2"
+    "@nomicfoundation/edr-darwin-x64" "0.3.2"
+    "@nomicfoundation/edr-linux-arm64-gnu" "0.3.2"
+    "@nomicfoundation/edr-linux-arm64-musl" "0.3.2"
+    "@nomicfoundation/edr-linux-x64-gnu" "0.3.2"
+    "@nomicfoundation/edr-linux-x64-musl" "0.3.2"
+    "@nomicfoundation/edr-win32-arm64-msvc" "0.3.2"
+    "@nomicfoundation/edr-win32-ia32-msvc" "0.3.2"
+    "@nomicfoundation/edr-win32-x64-msvc" "0.3.2"
 
 "@nomicfoundation/ethereumjs-common@4.0.4":
   version "4.0.4"
@@ -2285,6 +2285,8 @@ caseless@^0.12.0, caseless@~0.12.0:
 
 catering@^2.0.0, catering@^2.1.0:
   version "2.1.0"
+  resolved "https://registry.npmjs.org/catering/-/catering-2.1.0.tgz"
+  integrity sha512-M5imwzQn6y+ODBfgi+cfgZv2hIUI6oYU/0f35Mdb1ujGeqeoI5tOnl9Q13DTH7LW+7er+NYq8stNOKZD/Z3U/A==
   dependencies:
     queue-tick "^1.0.0"
 
@@ -4078,14 +4080,14 @@ hardhat-gas-reporter@^1.0.9:
     eth-gas-reporter "^0.2.25"
     sha1 "^1.1.1"
 
-hardhat@^2.0.0, hardhat@^2.0.2, hardhat@^2.0.4, hardhat@^2.10.0, hardhat@^2.11.0, hardhat@^2.22.0, hardhat@^2.9.4, hardhat@^2.9.5, hardhat@^2.9.9:
-  version "2.22.0"
-  resolved "https://registry.npmjs.org/hardhat/-/hardhat-2.22.0.tgz"
-  integrity sha512-t1J+ThxNYANL6ub6yM5XC84RY38vhfG7ODBtVRNQFQozdALo3qZUjxDzyGQU0U0eswe6orK49hq9UpdB7nPXNQ==
+hardhat@^2.0.0, hardhat@^2.0.2, hardhat@^2.0.4, hardhat@^2.10.0, hardhat@^2.11.0, hardhat@^2.22.1, hardhat@^2.9.4, hardhat@^2.9.5, hardhat@^2.9.9:
+  version "2.22.1"
+  resolved "https://registry.npmjs.org/hardhat/-/hardhat-2.22.1.tgz"
+  integrity sha512-cTWYIJc5jQ132XUI8oRI/TO9L6oavPoJRCTRU9sIjkVxvkxz0Axz0K83Z3BEdJTqBQ2W84ZRoTekti84kBwCjg==
   dependencies:
     "@ethersproject/abi" "^5.1.2"
     "@metamask/eth-sig-util" "^4.0.0"
-    "@nomicfoundation/edr" "^0.3.0"
+    "@nomicfoundation/edr" "^0.3.1"
     "@nomicfoundation/ethereumjs-common" "4.0.4"
     "@nomicfoundation/ethereumjs-tx" "5.0.4"
     "@nomicfoundation/ethereumjs-util" "9.0.4"
@@ -5878,6 +5880,8 @@ queue-microtask@^1.2.3:
 
 queue-tick@^1.0.0:
   version "1.0.0"
+  resolved "https://registry.npmjs.org/queue-tick/-/queue-tick-1.0.0.tgz"
+  integrity sha512-ULWhjjE8BmiICGn3G8+1L9wFpERNxkf8ysxkAer4+TFdRefDaXOCV5m92aMB9FtBVmn/8sETXLXY6BfW7hyaWQ==
 
 quick-lru@^4.0.1:
   version "4.0.1"
