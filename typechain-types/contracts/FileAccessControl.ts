@@ -9,6 +9,7 @@ import type {
   CallOverrides,
   ContractTransaction,
   Overrides,
+  PayableOverrides,
   PopulatedTransaction,
   Signer,
   utils,
@@ -36,6 +37,7 @@ export interface FileAccessControlInterface extends utils.Interface {
     "files(bytes32)": FunctionFragment;
     "isInList(address,address[])": FunctionFragment;
     "owner()": FunctionFragment;
+    "readFile(bytes32)": FunctionFragment;
     "renounceOwnership()": FunctionFragment;
     "setDataOwner(address,bool)": FunctionFragment;
     "submitUpdateFileProposal(bytes32,bytes32,string,string)": FunctionFragment;
@@ -52,6 +54,7 @@ export interface FileAccessControlInterface extends utils.Interface {
       | "files"
       | "isInList"
       | "owner"
+      | "readFile"
       | "renounceOwnership"
       | "setDataOwner"
       | "submitUpdateFileProposal"
@@ -91,6 +94,10 @@ export interface FileAccessControlInterface extends utils.Interface {
   ): string;
   encodeFunctionData(functionFragment: "owner", values?: undefined): string;
   encodeFunctionData(
+    functionFragment: "readFile",
+    values: [PromiseOrValue<BytesLike>]
+  ): string;
+  encodeFunctionData(
     functionFragment: "renounceOwnership",
     values?: undefined
   ): string;
@@ -126,6 +133,7 @@ export interface FileAccessControlInterface extends utils.Interface {
   decodeFunctionResult(functionFragment: "files", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "isInList", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "readFile", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "renounceOwnership",
     data: BytesLike
@@ -150,6 +158,7 @@ export interface FileAccessControlInterface extends utils.Interface {
   events: {
     "AddFile(bytes32,address,string,string,address[],uint256)": EventFragment;
     "OwnershipTransferred(address,address)": EventFragment;
+    "ReadFile(bytes32)": EventFragment;
     "UpdateFile(bytes32,bytes32,string,string)": EventFragment;
     "UpdateProposal(bytes32,bytes32,string,string)": EventFragment;
     "UpdateReadRule(bytes32,bytes32,string)": EventFragment;
@@ -158,6 +167,7 @@ export interface FileAccessControlInterface extends utils.Interface {
 
   getEvent(nameOrSignatureOrTopic: "AddFile"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "OwnershipTransferred"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "ReadFile"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "UpdateFile"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "UpdateProposal"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "UpdateReadRule"): EventFragment;
@@ -190,6 +200,13 @@ export type OwnershipTransferredEvent = TypedEvent<
 
 export type OwnershipTransferredEventFilter =
   TypedEventFilter<OwnershipTransferredEvent>;
+
+export interface ReadFileEventObject {
+  fileId: string;
+}
+export type ReadFileEvent = TypedEvent<[string], ReadFileEventObject>;
+
+export type ReadFileEventFilter = TypedEventFilter<ReadFileEvent>;
 
 export interface UpdateFileEventObject {
   proposalId: string;
@@ -313,6 +330,11 @@ export interface FileAccessControl extends BaseContract {
 
     owner(overrides?: CallOverrides): Promise<[string]>;
 
+    readFile(
+      fileId: PromiseOrValue<BytesLike>,
+      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     renounceOwnership(
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
@@ -392,6 +414,11 @@ export interface FileAccessControl extends BaseContract {
   ): Promise<boolean>;
 
   owner(overrides?: CallOverrides): Promise<string>;
+
+  readFile(
+    fileId: PromiseOrValue<BytesLike>,
+    overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
 
   renounceOwnership(
     overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -473,6 +500,11 @@ export interface FileAccessControl extends BaseContract {
 
     owner(overrides?: CallOverrides): Promise<string>;
 
+    readFile(
+      fileId: PromiseOrValue<BytesLike>,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
     renounceOwnership(overrides?: CallOverrides): Promise<void>;
 
     setDataOwner(
@@ -532,6 +564,11 @@ export interface FileAccessControl extends BaseContract {
       previousOwner?: PromiseOrValue<string> | null,
       newOwner?: PromiseOrValue<string> | null
     ): OwnershipTransferredEventFilter;
+
+    "ReadFile(bytes32)"(
+      fileId?: PromiseOrValue<BytesLike> | null
+    ): ReadFileEventFilter;
+    ReadFile(fileId?: PromiseOrValue<BytesLike> | null): ReadFileEventFilter;
 
     "UpdateFile(bytes32,bytes32,string,string)"(
       proposalId?: PromiseOrValue<BytesLike> | null,
@@ -621,6 +658,11 @@ export interface FileAccessControl extends BaseContract {
 
     owner(overrides?: CallOverrides): Promise<BigNumber>;
 
+    readFile(
+      fileId: PromiseOrValue<BytesLike>,
+      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
     renounceOwnership(
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
@@ -688,6 +730,11 @@ export interface FileAccessControl extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    readFile(
+      fileId: PromiseOrValue<BytesLike>,
+      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
 
     renounceOwnership(
       overrides?: Overrides & { from?: PromiseOrValue<string> }

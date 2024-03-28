@@ -46,10 +46,6 @@ task("listener", "Listner by <account> have <attributes>")
       console.log(JSON.stringify(addFileEvent, null, 4));
       readrule = readRule;
 
-      // for (var i = 0 ; i < writeList.length ; i++) {
-      //   wlist[i] = writeList[i];
-      // }
-
       const options = {
         url: 'http://127.0.0.1:8081/matchpolicy',
         json: true,
@@ -67,7 +63,7 @@ task("listener", "Listner by <account> have <attributes>")
         }
         console.log(`Status: ${res.statusCode}`);
         if (res.statusCode == 200) {
-          console.log(body);          
+          console.log(body);  
         }
       });
   
@@ -131,4 +127,11 @@ async function approveUpdate(hre, account, proposalId, fileAc) {
     const approveProposal = await fileAc.connect(account).approveProposal(proposalId);
     const approveProposalTxReceipt =  await approveProposal.wait();
     console.log('uploadFileTxReceipt', Boolean(approveProposalTxReceipt.status), approveProposalTxReceipt.transactionHash);
+} 
+
+async function requestReadFile(hre, account, fileId, fileAc) {
+  // const [deployer, dev0, dev1, dev2] = await (hre as any).ethers.getSigners();
+  const reqRead = await fileAc.connect(account).readFile(fileId, {value: 5});
+  const TxReceipt =  await reqRead.wait();
+  console.log('uploadFileTxReceipt', Boolean(TxReceipt.status), TxReceipt.transactionHash);
 } 

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.19;
+pragma solidity >=0.8.2 <0.9.0;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 
@@ -23,18 +23,14 @@ contract FileAccessControl is Ownable {
   mapping(bytes32 => File) public files;
   mapping(bytes32 => Proposal) public writeProposal;
 
-  event AddFile(
-    bytes32 indexed fileId,
-    address owner,
-    string name,
-    string readRule,
-    address[] writeList,
-    uint threshold
-  );
+  event AddFile(bytes32 indexed fileId, address owner, string name, string readRule, address[] writeList, uint threshold);
   event UpdateFile(bytes32 indexed proposalId, bytes32 indexed fileId, string oldname, string newname);
   event UpdateProposal(bytes32 indexed proposalId, bytes32 indexed fileId, string oldname, string newname);
   event UpdateReadRule(bytes32 indexed newFileId, bytes32 indexed oldFileId, string readRule);
   event UpdateWriteList(bytes32 indexed newFileId, bytes32 indexed oldFileId, address[] writeList);
+  event ReadFile(bytes32 indexed fileId);
+
+  constructor()  Ownable(msg.sender){}
 
   modifier onlyDataOwner(bytes32 fileId) {
     require(msg.sender == files[fileId].owner, "Only file owner");
@@ -65,6 +61,18 @@ contract FileAccessControl is Ownable {
     emit AddFile(fileId, msg.sender, name, readRule, writeList, threshold);
   }
 
+  function readFile(bytes32 fileId) payable external {
+    // TODO: verify fileId existed or not
+    (bool sent, ) = files[fileId].owner.call{value: msg.value}("");
+    require(sent, "Failed to send token");
+
+    emit ReadFile(fileId);
+  }
+
+  function getDataOwner(bytes32 fileId) public view returns (address) {
+        return files[fileId].owner ;
+  }
+
   function isInList(address user, address[] memory list) public pure returns (bool) {
     for (uint256 i = 0; i < list.length; i++) {
       if (list[i] == user) {
@@ -84,13 +92,13 @@ contract FileAccessControl is Ownable {
     string calldata oldname,
     string calldata newname
   ) public {
-    string memory text = string.concat(oldname, newname);
-    bytes32 fid = keccak256(abi.encodePacked(text));
+    // string memory text = string.concat(oldname, newname);
+    // bytes32 fid = keccak256(abi.encodePacked(text));
     // string memory msg1 = string.concat("notmatch expect: ", text);
     //  string memory msg2 = string.concat(msg1, ":");
     //  string memory msg3 = string.concat(msg2, string(abi.encodePacked(keccak256(abi.encodePacked(text)))));
 
-    require(fid == proposalId, "Invalid proposal ID");
+    // require(fid == proposalId, "Invalid proposal ID");
     require(isInList(msg.sender, files[fileId].writers) == true, "NO write permission");
     require(compare(files[fileId].name, oldname) == true, "NOT matching file name");
 

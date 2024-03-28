@@ -26,7 +26,8 @@ task("addfiles", "Add new files")
     }
     console.log(taskArgs.account,' address: ', account.address);
 
-    const filename = taskArgs.filename; //"/tmp/demo0/encryptedKey.txt";
+    const fileId = taskArgs.filename; 
+    const filename = "data.dat";
     const readRule = taskArgs.readrule; //"student and (math or CS)";
     const writerList = [dev1.address, dev2.address];
     const threshold = 2;
@@ -36,12 +37,13 @@ task("addfiles", "Add new files")
     );
     const fileAc = FileAccessControlFactory.attach(CONTRACT_ADDRESS);
     
-    const fileId = (hre as any).ethers.utils.keccak256((hre as any).ethers.utils.toUtf8Bytes(filename));
-    console.log('fileId', fileId);
+    // const fileId = (hre as any).ethers.utils.keccak256((hre as any).ethers.utils.toUtf8Bytes(filename));
+    // console.log('fileId', fileId);
   
   
     // addFile(bytes32 fileId, string calldata name, string calldata readRule, 
     // address[] calldata writeList, uint threshold)
+  // console.log({fileId, filename, readRule, writerList, threshold})
     const uploadFileTx = await fileAc.connect(account).addFile(fileId, filename, readRule, writerList, threshold);
     const uploadFileTxReceipt =  await uploadFileTx.wait();
   

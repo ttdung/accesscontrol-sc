@@ -17,6 +17,7 @@ import "./tasks/addfiles";
 import "./tasks/updatedata";
 import "./tasks/setdo";
 import "./tasks/listener";
+import "./tasks/storelistener";
 
 dotenv.config();
 

@@ -287,8 +287,8 @@
       ]
     },
     "/home/mmt/src/sc/accesscontrol/contracts/FileAccessControl.sol": {
-      "lastModificationDate": 1710929777236,
-      "contentHash": "e88d33c92e38cb5779cdf2b8f737a10d",
+      "lastModificationDate": 1711454420747,
+      "contentHash": "2a8e6c05b30f1e95e5f2b0765e0367d2",
       "sourceName": "contracts/FileAccessControl.sol",
       "solcConfig": {
         "version": "0.8.19",
@@ -321,7 +321,7 @@
         "@openzeppelin/contracts/access/Ownable.sol"
       ],
       "versionPragmas": [
-        "0.8.19"
+        ">=0.8.2 <0.9.0"
       ],
       "artifacts": [
         "FileAccessControl"
