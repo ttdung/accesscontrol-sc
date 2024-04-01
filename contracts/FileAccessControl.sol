@@ -1,12 +1,14 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.8.2 <0.9.0;
+pragma solidity >=0.8.0 <0.9.0;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
+
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract FileAccessControl is Ownable {
   struct File {
     address owner;
-    string name; // file url
+    bytes32 name; // file url
     string readRule;
     address[] writers;
     uint threshold;
@@ -14,23 +16,27 @@ contract FileAccessControl is Ownable {
 
   struct Proposal {
     bytes32 fileId;
-    string oldname;
-    string newname;
+    bytes32 newname;
     address[] proposer;
   }
 
+  address public storageOwner;
+  uint256 public percentage = 50; // 50% fee to Storage owner - 50% fee to Data owner
   mapping(address => bool) public dataOwner;
   mapping(bytes32 => File) public files;
   mapping(bytes32 => Proposal) public writeProposal;
 
-  event AddFile(bytes32 indexed fileId, address owner, string name, string readRule, address[] writeList, uint threshold);
-  event UpdateFile(bytes32 indexed proposalId, bytes32 indexed fileId, string oldname, string newname);
-  event UpdateProposal(bytes32 indexed proposalId, bytes32 indexed fileId, string oldname, string newname);
+  event AddFile(bytes32 indexed fileId, address owner, string readRule, address[] writeList, uint threshold);
+  event UpdateFile(bytes32 indexed proposalId, bytes32 indexed newname);
+  event UpdateProposal(bytes32 indexed proposalId, bytes32 indexed newname);
   event UpdateReadRule(bytes32 indexed newFileId, bytes32 indexed oldFileId, string readRule);
   event UpdateWriteList(bytes32 indexed newFileId, bytes32 indexed oldFileId, address[] writeList);
   event ReadFile(bytes32 indexed fileId);
 
-  constructor()  Ownable(msg.sender){}
+  // constructor(address storeowner, uint per)  Ownable(msg.sender){ 
+  //   storageOwner = storeowner;
+  //   percentage = per;
+  // }
 
   modifier onlyDataOwner(bytes32 fileId) {
     require(msg.sender == files[fileId].owner, "Only file owner");
@@ -43,7 +49,6 @@ contract FileAccessControl is Ownable {
 
   function addFile(
     bytes32 fileId,
-    string calldata name,
     string calldata readRule,
     address[] calldata writeList,
     uint threshold
@@ -53,20 +58,28 @@ contract FileAccessControl is Ownable {
     require(dataOwner[msg.sender], "REQUIRE data owner");
 
     files[fileId].owner = msg.sender;
-    files[fileId].name = name;
+    files[fileId].name = fileId;
     files[fileId].readRule = readRule;
     _setWriteList(fileId, writeList);
     files[fileId].threshold = threshold;
 
-    emit AddFile(fileId, msg.sender, name, readRule, writeList, threshold);
+    emit AddFile(fileId, msg.sender, readRule, writeList, threshold);
   }
 
-  function readFile(bytes32 fileId) payable external {
+  function readFile(bytes32 fileId, IERC20 token, uint256 amount) public {
     // TODO: verify fileId existed or not
-    (bool sent, ) = files[fileId].owner.call{value: msg.value}("");
-    require(sent, "Failed to send token");
+        uint256 feeToStorage = (amount * percentage) / 100 ;
+        uint256 feeToDataOwner = amount - feeToStorage;
 
-    emit ReadFile(fileId);
+        bool sent = token.transferFrom(msg.sender, storageOwner, feeToStorage);
+        require(sent, "Payment failed!");
+        
+
+        // send 50% to data owner
+        sent = token.transferFrom(msg.sender, files[fileId].owner, feeToDataOwner);
+        require(sent, "Payment failed!");
+
+    emit ReadFile(files[fileId].name);
   }
 
   function getDataOwner(bytes32 fileId) public view returns (address) {
@@ -87,44 +100,33 @@ contract FileAccessControl is Ownable {
   }
 
   function submitUpdateFileProposal(
-    bytes32 proposalId,
     bytes32 fileId,
-    string calldata oldname,
-    string calldata newname
+    bytes32 newname
   ) public {
     // string memory text = string.concat(oldname, newname);
-    // bytes32 fid = keccak256(abi.encodePacked(text));
-    // string memory msg1 = string.concat("notmatch expect: ", text);
-    //  string memory msg2 = string.concat(msg1, ":");
     //  string memory msg3 = string.concat(msg2, string(abi.encodePacked(keccak256(abi.encodePacked(text)))));
-
     // require(fid == proposalId, "Invalid proposal ID");
+    bytes32 proposalId = fileId;
     require(isInList(msg.sender, files[fileId].writers) == true, "NO write permission");
-    require(compare(files[fileId].name, oldname) == true, "NOT matching file name");
+    require(files[fileId].name != newname, "REQUIRE new file name");
 
     if (isInList(msg.sender, writeProposal[fileId].proposer) == false) {
       writeProposal[proposalId].proposer.push(msg.sender);
       writeProposal[proposalId].fileId = fileId;
-      writeProposal[proposalId].oldname = oldname;
       writeProposal[proposalId].newname = newname;
 
       emit UpdateProposal(
         proposalId,
-        writeProposal[proposalId].fileId,
-        writeProposal[proposalId].oldname,
         writeProposal[proposalId].newname
       );
-
 
       // Check if ENOUGH Signatures
       if (writeProposal[proposalId].proposer.length >= files[writeProposal[proposalId].fileId].threshold) {
       // execute updated
-      files[writeProposal[proposalId].fileId].name = writeProposal[proposalId].newname;
+      files[fileId].name = writeProposal[proposalId].newname;
 
       emit UpdateFile(
         proposalId,
-        writeProposal[proposalId].fileId,
-        writeProposal[proposalId].oldname,
         writeProposal[proposalId].newname
       );
     }
@@ -146,48 +148,10 @@ contract FileAccessControl is Ownable {
 
       emit UpdateFile(
         proposalId,
-        writeProposal[proposalId].fileId,
-        writeProposal[proposalId].oldname,
         writeProposal[proposalId].newname
       );
     }
   }
-
-  // function updateFile(bytes32 newFileId, bytes32 oldFileId) external onlyDataOwner(oldFileId) {
-  //   fileOwners[newFileId] = msg.sender;
-  //   readFileRule[newFileId] = readFileRule[oldFileId];
-  //   _setWriteList(newFileId, fileWriters[oldFileId]);
-
-  //   emit UpdateFile(newFileId, oldFileId);
-  // }
-
-  // function updateReadRule(
-  //   bytes32 newFileId,
-  //   bytes32 oldFileId,
-  //   string calldata readRule
-  // ) external onlyDataOwner(oldFileId) {
-  //   // move old attribue from oldFile to newFile
-  //   fileOwners[newFileId] = msg.sender;
-  //   _setWriteList(newFileId, fileWriters[oldFileId]);
-  //   // set new ReadRule
-  //   readFileRule[newFileId] = readRule;
-
-  //   emit UpdateReadRule(newFileId, oldFileId, readRule);
-  // }
-
-  // function updateWriteList(
-  //   bytes32 newFileId,
-  //   bytes32 oldFileId,
-  //   address[] calldata writeList
-  // ) external onlyDataOwner(oldFileId) {
-  //   // move old attribue from oldFile to newFile
-  //   fileOwners[newFileId] = msg.sender;
-  //   readFileRule[newFileId] = readFileRule[oldFileId];
-  //   // set new writelist
-  //   _setWriteList(newFileId, writeList);
-
-  //   emit UpdateWriteList(newFileId, oldFileId, writeList);
-  // }
 
   function _setWriteList(bytes32 fileId, address[] memory writeList) private {
     for (uint256 i = 0; i < writeList.length; i++) {
